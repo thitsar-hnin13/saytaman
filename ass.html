@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>SAY TA MAN Polyclinic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Roboto,system-ui,-apple-system,sans-serif; }
+        body { background:#DCFCE7; padding:1.2rem; min-height:100vh; }
+        .container { max-width:1200px; margin:0 auto; background:#ffffff; border-radius:32px; box-shadow:0 20px 60px rgba(0,60,40,0.10); padding:2rem 1.8rem; }
+        @media (min-width:768px){ body{padding:2rem 2.5rem;} .container{padding:2.8rem 3.2rem;} }
+        @media (max-width:480px){ .container{padding:1rem 0.8rem; border-radius:24px;} }
+
+        h1,h2,h3,h4{font-weight:600;letter-spacing:-0.01em;}
+        h1{font-size:2.2rem;color:#0a3a4f;border-left:6px solid #2b9c8c;padding-left:1rem;margin:0 0 0.2rem 0;}
+        @media (min-width:600px){ h1{font-size:2.8rem;padding-left:1.4rem;} }
+        .subhead{color:#2e5b6e;font-size:0.95rem;font-weight:400;margin-left:1.2rem;margin-bottom:1.2rem;display:flex;flex-wrap:wrap;gap:0.6rem 1.5rem;}
+        @media (min-width:600px){ .subhead{font-size:1.1rem;margin-left:2rem;gap:1.2rem 2.5rem;} }
+        .subhead i{color:#2b9c8c;margin-right:0.3rem;width:1.1rem;}
+        .section-title{font-size:1.5rem;font-weight:600;color:#0a3a4f;margin:2rem 0 1rem 0;padding-bottom:0.4rem;border-bottom:3px solid #d4e9ec;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+        @media (min-width:600px){ .section-title{font-size:1.9rem;margin:2.6rem 0 1.2rem 0;} }
+        .section-title i{color:#2b9c8c;font-size:1.6rem;width:2rem;}
+        .badge{background:#d4eae8;color:#0a4a4a;font-size:0.7rem;font-weight:600;padding:0.15rem 1rem;border-radius:30px;margin-left:0.4rem;display:inline-block;}
+        .grid-2{display:grid;gap:1.2rem;grid-template-columns:1fr;}
+        .grid-3{display:grid;gap:1.2rem;grid-template-columns:1fr;}
+        @media (min-width:600px){ .grid-2{grid-template-columns:1fr 1fr;} .grid-3{grid-template-columns:repeat(3,1fr);} }
+        .card{background:#f9fdfe;border-radius:20px;padding:1.2rem 1.2rem;box-shadow:0 2px 8px rgba(0,30,40,0.03);border:1px solid #e6f0f2;transition:0.15s;}
+        @media (min-width:600px){ .card{padding:1.7rem 2rem;border-radius:26px;} }
+        .card:hover{background:#ffffff;border-color:#b8d9de;box-shadow:0 6px 16px rgba(33,105,105,0.06);}
+        .card h3{font-size:1.15rem;color:#0f4a5a;margin-bottom:0.5rem;display:flex;align-items:center;gap:8px;}
+        @media (min-width:600px){ .card h3{font-size:1.4rem;margin-bottom:0.8rem;} }
+        .card h3 i{color:#2b9c8c;width:1.8rem;font-size:1.1rem;}
+        .card ul{list-style:none;margin-top:0.2rem;}
+        .card ul li{padding:0.25rem 0 0.25rem 1.5rem;position:relative;border-bottom:1px dashed #e1eff0;font-size:0.92rem;}
+        @media (min-width:600px){ .card ul li{font-size:1rem;padding:0.35rem 0 0.35rem 1.8rem;} }
+        .card ul li:last-child{border-bottom:none;}
+        .card ul li::before{content:"▹";color:#2b9c8c;position:absolute;left:0;font-weight:bold;}
+        .card p{line-height:1.6;font-size:0.92rem;}
+        @media (min-width:600px){ .card p{font-size:1rem;line-height:1.7;} }
+
+        .swot-grid{display:grid;gap:1.2rem;grid-template-columns:1fr;}
+        @media (min-width:600px){ .swot-grid{grid-template-columns:1fr 1fr;gap:1.8rem;} }
+        .swot-card{padding:1.2rem 1.2rem;border-radius:18px;}
+        @media (min-width:600px){ .swot-card{padding:1.6rem 1.8rem;border-radius:22px;} }
+        .swot-card.strength{background:#def0ee;border-left:5px solid #1d7a6e;}
+        .swot-card.weakness{background:#fdeeea;border-left:5px solid #c45a4a;}
+        .swot-card.opportunity{background:#e3f2e9;border-left:5px solid #33835c;}
+        .swot-card.threat{background:#faece8;border-left:5px solid #b34f44;}
+        .swot-card h4{font-size:1.2rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:8px;}
+        @media (min-width:600px){ .swot-card h4{font-size:1.5rem;margin-bottom:0.8rem;} }
+        .swot-card ul{list-style:none;}
+        .swot-card ul li{padding:0.3rem 0 0.3rem 1.4rem;position:relative;border-bottom:1px solid rgba(0,0,0,0.02);font-size:0.92rem;}
+        @media (min-width:600px){ .swot-card ul li{font-size:1rem;padding:0.4rem 0 0.4rem 1.6rem;} }
+        .swot-card ul li:last-child{border-bottom:none;}
+        .swot-card ul li::before{content:"•";color:#1f5f5a;font-weight:bold;position:absolute;left:0;font-size:1.2rem;}
+
+        .table-wrap{overflow-x:auto;margin:1.2rem 0;border-radius:16px;border:1px solid #dae9ec;}
+        table{width:100%;border-collapse:collapse;background:#fff;font-size:0.82rem;}
+        @media (min-width:600px){ table{font-size:0.95rem;} }
+        th{background:#e3f0f0;color:#0a3a4a;font-weight:600;padding:0.6rem 0.8rem;text-align:left;}
+        td{padding:0.5rem 0.8rem;border-bottom:1px solid #e5edef;vertical-align:top;}
+        @media (min-width:600px){ th{padding:0.9rem 1.2rem;} td{padding:0.8rem 1.2rem;} }
+        tr:last-child td{border-bottom:none;}
+
+        .org-chart{display:flex;flex-wrap:wrap;gap:0.6rem 1.2rem;background:#f4fafa;padding:1rem 1.2rem;border-radius:22px;margin:0.6rem 0 0.3rem 0;}
+        @media (min-width:600px){ .org-chart{gap:1.2rem 2.8rem;padding:1.8rem 2.2rem;border-radius:30px;} }
+        .org-item{font-weight:500;color:#0b3c48;font-size:0.92rem;}
+        @media (min-width:600px){ .org-item{font-size:1.05rem;} }
+        .org-item i{color:#2b9c8c;margin-right:6px;width:1.4rem;}
+        .org-item strong{display:inline-block;min-width:90px;}
+        @media (min-width:600px){ .org-item strong{min-width:110px;} }
+
+        .footer-note{margin-top:2rem;font-size:0.8rem;color:#3e6877;border-top:1px solid #dae9ec;padding-top:1.2rem;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem 1.5rem;}
+        @media (min-width:600px){ .footer-note{font-size:0.9rem;margin-top:3.2rem;padding-top:2rem;gap:1rem 2.8rem;} }
+        .ref-list{list-style:none;line-height:1.8;font-size:0.85rem;}
+        @media (min-width:600px){ .ref-list{font-size:0.92rem;line-height:1.9;} }
+        .ref-list li{padding:0.15rem 0 0.15rem 1.6rem;position:relative;}
+        .ref-list li::before{content:"📄";position:absolute;left:0;opacity:0.8;font-size:0.9rem;}
+
+        .contents-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.1rem 1rem;font-size:0.82rem;}
+        @media (min-width:600px){ .contents-grid{font-size:0.95rem;gap:0.2rem 1.8rem;} }
+        .obj-grid{display:flex;flex-wrap:wrap;gap:0.3rem 0.8rem;font-size:0.85rem;}
+        @media (min-width:600px){ .obj-grid{gap:0.6rem 1.8rem;font-size:1rem;} }
+        .obj-grid span{background:#edf8f5;padding:0.1rem 0.6rem;border-radius:30px;color:#0f6b5e;}
+        .highlight-box{background:#f5fbfc;padding:0.6rem 1rem;border-radius:20px;font-size:0.9rem;}
+        @media (min-width:600px){ .highlight-box{padding:0.8rem 1.8rem;border-radius:40px;font-size:0.98rem;} }
+        .flex-icon{display:flex;align-items:center;gap:0.4rem;}
+
+        /* phone friendly */
+        .contact-bar{background:#dceeec;padding:0.3rem 1rem;border-radius:40px;font-weight:600;color:#0b4949;font-size:0.75rem;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;}
+        @media (min-width:600px){ .contact-bar{font-size:1rem;padding:0.4rem 2rem;} }
+        .member-pill{background:#f1f8f9;padding:0.4rem 1rem;border-radius:40px;display:flex;flex-wrap:wrap;gap:0.3rem 1rem;font-size:0.8rem;margin:0.4rem 0 1.2rem 0;}
+        @media (min-width:600px){ .member-pill{padding:0.7rem 2rem;gap:0.6rem 2rem;font-size:1rem;margin:0.8rem 0 2rem 0;} }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;">
+        <div>
+            <h1><i class="fas fa-heartbeat" style="color:#2b9c8c;margin-right:10px;"></i>SAY TA MAN</h1>
+            <div class="subhead">
+                <span><i class="fas fa-map-pin"></i> Maydawi Road, North Okkalapa</span>
+                <span><i class="fas fa-phone-alt"></i> 01-9690443 · 09740123450</span>
+                <span><i class="fas fa-globe"></i> saytaman.site</span>
+                <span><i class="fab fa-facebook"></i> SAY TA MAN polyclinic</span>
+                <span><i class="fas fa-viber"></i> (+95)9740123450</span>
+            </div>
+        </div>
+        <div class="contact-bar">
+            <i class="fas fa-clock"></i> 8:00–21:00 · 24h emergency
+        </div>
+    </div>
+
+    <!-- GROUP MEMBERS -->
+    <div class="member-pill">
+        <span><i class="fas fa-users" style="color:#1f7a6b;"></i> Group Members:</span>
+        <span>Htun Myo Wai</span><span>Thitsar Aung</span><span>Harmar Hnin Soe</span>
+        <span>Wuttyee Moe Lwin</span><span>Hnin Yadanar Hlaing</span><span>Eaint Yoon Htet</span>
+    </div>
+
+    <!-- CONTENTS -->
+    <div style="background:#f4fbfc;border-radius:18px;padding:0.8rem 1.2rem;margin-bottom:1.2rem;border:1px solid #d4e5e8;">
+        <h4 style="color:#0a3a4f;margin-bottom:0.3rem;font-size:1rem;"><i class="fas fa-list-ul"></i> Contents</h4>
+        <div class="contents-grid">
+            <span>1. Executive Summary ....................... pg.3</span>
+            <span>2. Business Introduction .................... pg.3</span>
+            <span>3. SAY TA MAN Company Profile .............. pg.4</span>
+            <span>4. Operation Plan ............................ pg.5</span>
+            <span>5. Vision, Mission, Goals & Objectives ...... pg.5</span>
+            <span>6. Organizational Structure ................. pg.6</span>
+            <span>7. Business SWOT Analysis ................... pg.7</span>
+            <span>8. Strategic Direction ...................... pg.8</span>
+            <span>9. Medical Services ......................... pg.8</span>
+            <span>10. E-commerce Business ..................... pg.9</span>
+            <span>11. Logistics & Supply Chain Strategy ....... pg.12</span>
+            <span>12. Conclusion .............................. pg.15</span>
+            <span>13. Reference ............................... pg.16</span>
+        </div>
+    </div>
+
+    <div class="section-title"><i class="fas fa-file-alt"></i> 1. Executive Summary</div>
+    <div class="card" style="margin-bottom:1rem;">
+        <p><strong>SAY TA MAN Co., Ltd</strong> is a modern multi‑specialty polyclinic strategically located on <strong>Maydawi Road in North Okkalapa</strong> Township. The clinic aims to provide health services:</p>
+        <ul style="margin-top:0.4rem;">
+            <li>Comprehensive affordable high quality healthcare services</li>
+            <li>Accurate medical test results</li>
+            <li>Precise lab reports</li>
+            <li>Reliable diagnostic results</li>
+            <li>General Practitioner (GP) consultations</li>
+            <li>Required pharmacy services for the people in one place</li>
+        </ul>
+        <p style="margin-top:0.6rem;">The clinic is designed to provide the services needed for a large population and reduce the need for patients to travel long distances for medical treatment. This business aims to maintain high service quality, fair prices, and public satisfaction through long term patient trust. Financial targets indicate that the polyclinic has strong growth potential due to the increasing demand for private healthcare services in Myanmar. The clinic is expected to achieve operation stability within its early years through effective cost management, service diversification and continuous improvement.</p>
+        <p style="margin-top:0.6rem;">The clinic also imports and sells the latest and most modern medicines needed by the public. By combining quality healthcare, strategic location, and sustainable business practices, the proposed poly clinic is positioned to become a trusted healthcare provider and contribute positively to the well-being of the community while generating long term business success.</p>
+    </div>
+
+    <div class="section-title"><i class="fas fa-rocket"></i> 2. Business Introduction</div>
+    <div class="card" style="margin-bottom:1rem;">
+        <h3 style="font-size:1.1rem;color:#0f4a5a;"><i class="fas fa-digital-tiling"></i> Healthcare Digital Transformation</h3>
+        <p>The healthcare industry is experiencing a rapid digital shift, where traditional medical models are no longer sufficient to meet modern expectations. Today patients demand speed, precision, and digital connectivity in their healthcare journey. Polyclinics with their multi‑specialty set up are uniquely positioned to leverage smart technologies such as Electronic Medical Records (EMR) and digital triaging to deliver highly efficient care.</p>
+        <h3 style="font-size:1.1rem;color:#0f4a5a;margin-top:1rem;"><i class="fas fa-clinic-medical"></i> Overview of SAY TA MAN Poly Clinic</h3>
+        <p><strong>SAY TA MAN Poly Clinic</strong> is established with a deep commitment to the well‑being of our local community. Built on the values of empathy, trust and affordability, the clinic provides a welcoming environment where families can receive comprehensive primary and specialist care. Our goal is to be a trusted healthcare partner for every individual from children to the elderly.</p>
+        <h3 style="font-size:1.1rem;color:#0f4a5a;margin-top:1rem;"><i class="fas fa-tasks"></i> Purpose of the assignment</h3>
+        <p>The purpose of those assignments is to develop a strategic and operational framework for <strong>SAY TA MAN Poly clinic</strong>. This document outlines the clinic's core strategic direction, including its vision, mission, and objectives. It covers a detailed situation analysis (SWOT) and an operation plan, focusing on organizational structure and patient flow management to ensure sustainable growth and exceptional service delivery.</p>
+    </div>
+
+    <div class="section-title"><i class="fas fa-building"></i> 3. SAY TA MAN CO., Ltd. Company Profile</div>
+    <div class="card" style="margin-bottom:1rem;">
+        <p><strong>SAY TA MAN poly clinic</strong> and medical healthcare center is one of the well‑known companies in the region within the medical fields, established in Myanmar in 2026.</p>
+        <p style="margin-top:0.5rem;">SAY TA MAN poly clinic and medical healthcare center have expertise in supplying, installing, and commissioning a complete range of medical equipment and supplies for healthcare facilities ranging from poly clinics to general and specialized hospitals.</p>
+        <p style="margin-top:0.5rem;"><strong>SAY TA MAN poly clinic</strong> and medical healthcare have a plan:</p>
+        <ul>
+            <li>General Practitioner consultations</li>
+            <li>Outpatient poly clinics and healthcare centers</li>
+            <li>Special departments laboratory testing departments</li>
+            <li>Operating Theaters, Preparation, Recovery rooms</li>
+            <li>Patient Rooms and Specialized wards, Delivery Rooms</li>
+            <li>Central sterilization Supply department</li>
+            <li>Preventive healthcare programs</li>
+            <li>Pharmacy Operations</li>
+        </ul>
+        <p style="margin-top:0.6rem;"><strong>SAY TA MAN poly clinic</strong> is estimated at <strong>MMK 800 million</strong>. The investment will be used for facility construction and renovation, medical equipment procurement, licensing requirements, technology systems, staffing, and operational expenses. The clinic is expected to <strong>employ 25 to 35 staff members, including doctors, nurses, pharmacist laboratory technicians, administrative personnel and support staff.</strong></p>
+        <p style="margin-top:0.6rem;">Overall <strong>SAY TA MAN poly clinic</strong> create a sustainable healthcare business that balances social responsibility and financial delivering valuable healthcare services to the people. Continues training and professional development programs will be provided to ensure service excellence and organizational growth.</p>
+        <ul style="margin-top:0.6rem;">
+            <li><i class="fas fa-map-marker-alt" style="color:#1c7a6a;"></i> <strong>Location:</strong> On the Maydawai main road, North Okkalapa Township, Yangon, Myanmar.</li>
+            <li><i class="fab fa-facebook"></i> <strong>Facebook page:</strong> SAY TA MAN poly clinic and healthcare center</li>
+            <li><i class="fas fa-globe"></i> <strong>Website:</strong> saytaman.site</li>
+            <li><i class="fas fa-phone"></i> <strong>Phone number:</strong> 01-9690443, 09740123450</li>
+            <li><i class="fas fa-viber"></i> <strong>Viber number:</strong> (+95)9740123450</li>
+        </ul>
+    </div>
+
+    <div class="section-title"><i class="fas fa-clock"></i> 4. Operation Plan</div>
+    <div class="card" style="margin-bottom:1rem;">
+        <ul>
+            <li><strong>Clinic Operation Hours:</strong> Monday to Sunday – 8:00 AM to 9:00 PM</li>
+            <li><strong>Emergency Services:</strong> 24 hours</li>
+        </ul>
+    </div>
+
+    <div class="section-title"><i class="fas fa-flag"></i> 5. Company's Vision, Mission, Goals &amp; Objectives</div>
+    <div class="grid-3" style="margin-bottom:0.8rem;">
+        <div class="card"><h3><i class="fas fa-eye"></i> Vision</h3><p>To redefine the futures of healthcare in Myanmar by building an integrated healthcare network that connects accessible and affordable polyclinic, pharmacies, diagnostic centers, focus on One‑stop service, digital health platforms and community wellness services through innovation, technology, and excellence.</p></div>
+        <div class="card"><h3><i class="fas fa-bullseye"></i> Mission</h3><p>To build and operate an integrated, technology drives healthcare ecosystem that connects polyclinics, pharmacies, diagnostic services, and digital health platforms into one seamless network.</p></div>
+        <div class="card"><h3><i class="fas fa-flag-checkered"></i> Goals</h3><ul><li>To become one of the leading multi‑specialty polyclinics in Yangon within five years.</li><li>To provide accessible, affordable, and high‑quality healthcare services for all patients.</li><li>To implement advanced healthcare technologies, including EMR, HIS, telemedicine, and online appointment systems.</li><li>To achieve sustainable business growth while maintaining excellent patient satisfaction.</li><li>To expand the clinic into a small hospital in the future based on business performance and community healthcare needs.</li></ul></div>
+    </div>
+    <div class="card" style="margin:0.6rem 0 1rem 0;">
+        <h3><i class="fas fa-list-check"></i> SMART Objectives (within first 2 years)</h3>
+        <div class="obj-grid">
+            <span><i class="fas fa-check-circle" style="color:#1f8a7a;"></i> ≥90% patient satisfaction</span>
+            <span><i class="fas fa-check-circle" style="color:#1f8a7a;"></i> 200–300 patients/month</span>
+            <span><i class="fas fa-check-circle" style="color:#1f8a7a;"></i> Reduce waiting time (online appt & digital queue)</span>
+            <span><i class="fas fa-check-circle" style="color:#1f8a7a;"></i> Recruit & retain qualified staff (CPD)</span>
+            <span><i class="fas fa-check-circle" style="color:#1f8a7a;"></i> Monthly community health education & free screening (BP, diabetes)</span>
+            <span><i class="fas fa-check-circle" style="color:#1f8a7a;"></i> Maintain accurate EMR for all registered patients</span>
+            <span><i class="fas fa-check-circle" style="color:#1f8a7a;"></i> Ensure compliance with Myanmar & international standards</span>
+        </div>
+        <div style="margin-top:0.8rem;border-top:1px dashed #d0e3e5;padding-top:0.8rem;">
+            <p><strong>Objectives:</strong> To provide high quality outpatient medical services and affordable, technology driven healthcare services to the surrounding community by using qualified healthcare and modern equipment. To launch an online appointment and patient management platform that reduces waiting times and enhances patient convenience. To develop a mobile healthcare application that enables patients to access healthcare services, medical records, and teleconsultation services remotely.</p>
+        </div>
+    </div>
+
+    <div class="section-title"><i class="fas fa-sitemap"></i> 6. Organizational Structure</div>
+    <div style="background:#f5fbfc;border-radius:20px;padding:0.8rem 1.2rem;margin-bottom:0.6rem;border:1px solid #dceeef;">
+        <p style="font-size:0.92rem;line-height:1.6;">The organizational structure of SAY TA MAN Co., Ltd. is designed to ensure effective management, clear responsibilities, and efficient coordination among all departments. At the top of the organization is the Chief Executive Officer (CEO), who is responsible for overall leadership, strategic planning, decision‑making, and ensuring the company achieves its vision, mission, and goals. Directly under the CEO is the Board of Directors (BOD), which provides governance, oversight, policy‑making, and ensures transparency and accountability in all business operations. The organization is divided into two main departments: the Medical Department and the Clinic Administration Department, each with specific responsibilities that support the delivery of high‑quality healthcare services and smooth clinic operations.</p>
+        <p style="margin-top:0.4rem;font-weight:500;"><strong>Key Responsibilities:</strong></p>
+        <ul style="margin-left:1rem;font-size:0.92rem;">
+            <li><strong>CEO:</strong> overall leadership, strategic direction, business growth</li>
+            <li><strong>BOD:</strong> governance, policy‑making, oversight</li>
+            <li><strong>Medical Department:</strong> patient care, treatment, diagnostics, pharmacy services</li>
+            <li><strong>Clinic Administration:</strong> administrative support, finance, HR, IT, logistics & supply chain, facility management</li>
+        </ul>
+    </div>
+    <div class="org-chart">
+        <div class="org-item"><i class="fas fa-user-tie"></i> <strong>CEO</strong> – leadership, strategy, growth</div>
+        <div class="org-item"><i class="fas fa-users"></i> <strong>Board of Directors</strong> – governance, policy</div>
+        <div class="org-item"><i class="fas fa-user-md"></i> <strong>Medical Department</strong> – Doctors, Nursing, Lab, Pharmacy</div>
+        <div class="org-item"><i class="fas fa-clipboard-list"></i> <strong>Clinic Administration</strong> – Reception, Finance, HR, IT, Logistics, Security</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.4rem 0 1.2rem 0;">
+        <span class="badge"><i class="fas fa-stethoscope"></i> Medical: Doctors/Specialists, Nursing, Lab & Diagnostics, Pharmacy</span>
+        <span class="badge"><i class="fas fa-cogs"></i> Admin: Reception & Billing, Finance & Accounts, HR & Admin, IT Support, Logistics & Supply Chain, Cleaners & Security</span>
+    </div>
+    <div style="background:#f9fcfc;border-radius:16px;padding:0.8rem 1rem;border:1px solid #e0eeef;margin-bottom:0.8rem;">
+        <p style="font-size:0.9rem;"><strong>Medical Department:</strong> The Medical Department is responsible for providing quality healthcare services to patients. It consists of: <strong>Doctors / Specialists</strong> – includes General Practitioners (GPs) and various Specialists. <strong>Nursing Department</strong> – responsible for patient care and support services. <strong>Lab & Diagnostics</strong> – responsible for laboratory testing and diagnostic services. <strong>Pharmacy</strong> – responsible for dispensing medicines and providing pharmaceutical care.</p>
+        <p style="font-size:0.9rem;margin-top:0.4rem;"><strong>Clinic Administration Department:</strong> The Clinic Administration Department ensures the smooth operation of everyday clinic activities. It consists of: <strong>Reception & Billing</strong> – handles patient registration, appointments, and billing. <strong>Finance & Accounts</strong> – manages financial transactions, accounting, and reporting. <strong>HR & Admin</strong> – manages human resources, recruitment, training, and administration. <strong>IT Support</strong> – responsible for IT systems, data management, and technical support. <strong>Logistics & Supply Chain</strong> – manages procurement, inventory, medical supply distribution, and logistics coordination. <strong>Cleaners & Security</strong> – ensures cleanliness, safety, and security of the clinic premises.</p>
+    </div>
+
+    <div class="section-title"><i class="fas fa-balance-scale"></i> 7. Business SWOT Analysis</div>
+    <div class="highlight-box" style="margin-bottom:0.8rem;">
+        <p><strong>Definition:</strong> SWOT Analysis is a strategic planning tool used to evaluate an organization's Strengths, Weaknesses, Opportunities, and Threats. It helps businesses identify their internal capabilities and external environmental factors that may influence organizational performance and long‑term success. By understanding these factors, organizations can develop appropriate strategies to maximize strengths, overcome weaknesses, take advantage of opportunities, and minimize potential threats.</p>
+        <p style="margin-top:0.4rem;"><strong>Importance:</strong> SWOT Analysis plays an important role in strategic planning and business decision‑making. It enables organizations to understand their current business position and identify the key factors that influence future growth and competitiveness. Through SWOT Analysis, businesses can develop effective strategies, allocate resources efficiently, improve operational performance, reduce potential risks, and respond proactively to changes in the external environment. For healthcare organizations such as <strong>SAY TA MAN Co. Ltd.,</strong> SWOT Analysis supports management in delivering high‑quality healthcare services, strengthening competitive advantages, and achieving sustainable business growth.</p>
+    </div>
+    <div class="swot-grid">
+        <div class="swot-card strength"><h4><i class="fas fa-plus-circle"></i> Strengths</h4><ul><li>Multi‑Specialty Care – Having various specialist doctors under one roof provides high convenience to patients.</li><li>Strategic Location – Located in an accessible area with good public transport connections.</li><li>Modern Equipment – Digital X‑ray and advanced laboratory services ensure fast results.</li></ul></div>
+        <div class="swot-card weakness"><h4><i class="fas fa-minus-circle"></i> Weaknesses</h4><ul><li>Brand Awareness – Being a newly established clinic, it lacks a strong brand presence initially.</li><li>Limited Parking – Due to the type of clinic, parking may be difficult for visitors.</li><li>High Initial Overhead Costs – High operation and setup costs due to advanced equipment purchases.</li></ul></div>
+        <div class="swot-card opportunity"><h4><i class="fas fa-arrow-trend-up"></i> Opportunities</h4><ul><li>Health Partnerships – Partnering with other countries hospitals and local insurances providers for medical checkups.</li><li>Telemedicine Integration – Offering remote consultation for follow up patients to expand reach.</li><li>Community Wellness Programs – Conducting free health talks and basic screening to build trust.</li></ul></div>
+        <div class="swot-card threat"><h4><i class="fas fa-triangle-exclamation"></i> Threats</h4><ul><li>Intense Competition – Strong competition from long established hospitals and neighboring clinics.</li><li>Cost Changeability – Fluctuations in drugs, travel expenses and medical supply costs due to economic factors.</li><li>Healthcare Staff Turnovers – Risk of losing skilled nurses or technicians to larger competitions.</li></ul></div>
+    </div>
+
+    <div class="section-title"><i class="fas fa-road"></i> 8. Strategic Direction</div>
+    <div class="card" style="margin-bottom:1.2rem;">
+        <p><strong>SAY TA MAN Co., Ltd.</strong> is committed to becoming a leading smart healthcare provider by delivering accessible, affordable, and high‑quality healthcare services to the people of Myanmar. The company's strategic direction focuses on strengthening its position in the healthcare industry by integrating advanced medical technologies, qualified healthcare professionals, and patient‑centered services into a comprehensive one‑stop healthcare system. Through the implementation of Electronic Medical Records (EMR), Hospital Information Systems (HIS), online appointment platforms, telemedicine services, and digital payment systems, the clinic aims to improve operational efficiency, reduce patient waiting times, and enhance the overall patient experience.</p>
+        <p style="margin-top:0.6rem;">Furthermore, <strong>SAY TA MAN Co., Ltd.</strong> is dedicated to continuously improving the quality of healthcare services by investing in modern medical equipment, staff training, and professional development programs. The company will also promote preventive healthcare through regular health screening programs, health education campaigns, and community outreach activities to improve public health awareness. By establishing strategic partnerships with healthcare organizations, insurance providers, and technology companies, the clinic seeks to expand its healthcare network and strengthen its competitive advantage in the healthcare market.</p>
+        <p style="margin-top:0.6rem;">In addition, <strong>SAY TA MAN Co., Ltd.</strong> is committed to maintaining high standards of corporate governance, financial sustainability, and ethical healthcare practices. Through continuous innovation, effective resource management, and a strong commitment to patient satisfaction, the company aims to achieve sustainable business growth while contributing to the development of Myanmar's healthcare sector and improving the quality of life of the communities it serves.</p>
+    </div>
+
+    <div class="section-title"><i class="fas fa-notes-medical"></i> 9. Medical Services</div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>Service</th><th>Working</th></tr></thead>
+            <tbody>
+                <tr><td>General Medical Consultations</td><td>Provide primary healthcare services, including diagnosis and treatment of common illnesses, routine check‑ups, chronic disease management, preventive care, and personalized treatment plans.</td></tr>
+                <tr><td>Specialist Consultation Services</td><td>Offer specialist consultations in Family Medicine, Internal Medicine, Pediatrics, and Women's Health by qualified medical professionals.</td></tr>
+                <tr><td>Diagnostic and Laboratory Services</td><td>Conduct blood tests, urine analysis, health screening packages, and other laboratory investigations with accurate and timely results.</td></tr>
+                <tr><td>Vaccination and Immunization Services</td><td>Provide routine immunizations, influenza vaccines, travel vaccinations, and disease prevention programs for children and adults.</td></tr>
+                <tr><td>Telemedicine and Digital Healthcare Services</td><td>Deliver online consultations, appointment booking, electronic prescriptions, virtual follow‑up consultations, and digital medical records.</td></tr>
+                <tr><td>Pharmacy Services</td><td>Dispense prescription medicines, OTC medicines, vitamins, nutritional supplements, and provide medication counseling.</td></tr>
+                <tr><td>Preventive Healthcare and Wellness Programs</td><td>Organize health screenings, wellness assessments, disease prevention programs, and corporate health check‑up services.</td></tr>
+                <tr><td>Pharmaceutical Products</td><td>Supply prescription medicines, over‑the‑counter medicines, vitamins, and nutritional supplements.</td></tr>
+                <tr><td>Medical Devices and Home Healthcare Equipment</td><td>Provide blood pressure monitors, glucose monitoring devices, thermometers, and other home healthcare equipment.</td></tr>
+                <tr><td>Health and Wellness Products</td><td>Offer products that support preventive healthcare, healthy lifestyles, and overall well‑being.</td></tr>
+                <tr><td>Technology‑Driven Healthcare Solution</td><td>Implement Electronic Medical Records (EMR), online appointment systems, digital payment systems, automated reminders, and secure healthcare databases.</td></tr>
+                <tr><td>Medical Devices &amp; Home Care</td><td>Blood Pressure monitors, glucose meters, thermometers and home healthcare equipment.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-title"><i class="fas fa-cart-plus"></i> 10. E‑commerce Business</div>
+    <div class="card" style="margin-bottom:0.8rem;">
+        <h3><i class="fas fa-laptop"></i> Introduction to E‑commerce Business</h3>
+        <p>E‑commerce, or electronic commerce, represents the buying and selling of goods and services, or the transmitting of funds or data, over an electronic network, primarily the internet. This broad definition encompasses a wide range of online business activities, including consumer‑based retail websites, online marketplaces, business‑to‑business exchanges, and digital service platforms. In its essence, e‑commerce has revolutionized the way businesses operate and consumers access products and services. In the healthcare context, e‑commerce extends beyond the traditional understanding of online retail to encompass a broader ecosystem of digital health services. This includes telemedicine platforms that connect patients with healthcare providers remotely, online appointment scheduling systems, digital prescription services, electronic health records management, and the delivery of medical supplies and pharmaceuticals through online channels. The integration of e‑commerce principles into healthcare has created new opportunities for improving patient access.</p>
+        <h3 style="margin-top:1rem;"><i class="fas fa-tags"></i> Categories of E‑commerce with Examples</h3>
+        <ul>
+            <li><strong>Business‑to‑Consumer (B2C):</strong> B2C is when businesses provide services directly to customers. SAY TA MAN Polyclinic uses this model through its online appointment system, allowing patients to book doctor consultations easily.</li>
+            <li><strong>Business‑to‑Business (B2B):</strong> B2B involves transactions between businesses. SAY TA MAN Polyclinic supports this through its Hospital Information System (HIS) and Electronic Medical Records (EMR), connecting with laboratories, pharmacies, and medical suppliers.</li>
+            <li><strong>Government‑to‑Consumer (G2C) / Government‑to‑Business (G2B):</strong> These models connect governments with citizens and businesses through online healthcare services. SAY TA MAN Polyclinic supports public health programs and community healthcare initiatives.</li>
+        </ul>
+        <p style="margin-top:0.6rem;"><strong>SAY TA MAN. Site</strong> – saytaman.site</p>
+    </div>
+    <div class="grid-2">
+        <div class="card"><h3><i class="fas fa-calendar-check"></i> How SAY TA MAN applies healthcare E‑commerce</h3><p>SAY TA MAN Polyclinic uses healthcare e‑commerce to provide faster and more convenient services. Patients can book appointments online, while the Electronic Medical Record (EMR) system securely stores patient information. The clinic also offers telemedicine for online consultations and follow‑up care, improving efficiency, accessibility, and overall patient experience.</p></div>
+        <div class="card"><h3><i class="fas fa-calendar-plus"></i> Appointment System</h3><p>The appointment system represents the core component of the clinic's healthcare e‑commerce platform, enabling patients to schedule consultations online quickly and easily. The system includes a comprehensive form that collects necessary patient information, including name, contact details, date of birth, gender, preferred appointment date and time, department selection, and doctor selection. The system's multilingual capabilities ensure accessibility for patients who speak English, Burmese, or Thai.</p></div>
+        <div class="card"><h3><i class="fas fa-video"></i> Online Consultation</h3><p>The online consultation feature extends the clinic's services to patients who prefer or require remote access to healthcare. Through the telemedicine platform, patients can schedule and conduct consultations with doctors via secure video conferencing.</p></div>
+        <div class="card"><h3><i class="fas fa-user-check"></i> Benefits</h3>
+            <p><strong>Benefits for Patients:</strong> Patients can book appointments online, choose their preferred doctor, and confirm visits without phone calls. Telemedicine allows consultations from home, useful for mobility issues, remote areas, or contagious illnesses. Patient portal gives secure access to medical records, test results, and supports English, Burmese, and Thai.</p>
+            <p style="margin-top:0.4rem;"><strong>Benefits for Doctors:</strong> EMR provides quick access to patient histories, reducing paperwork. Online appointment system simplifies scheduling, reduces admin tasks, and minimizes missed appointments via reminders. Telemedicine enables doctors to reach remote patients and offers flexible scheduling.</p>
+            <p style="margin-top:0.4rem;"><strong>Benefits for the Clinic:</strong> The website improves efficiency, supports growth, and enhances patient care. The online appointment system optimizes scheduling, provides real‑time data for administration, reduces paperwork, improves communication between departments, and provides analytics for performance monitoring. The website also builds trust by clearly presenting services, doctors, and departments.</p>
+        </div>
+    </div>
+    <div class="card" style="margin-top:0.6rem;">
+        <h3><i class="fas fa-microchip"></i> Future Technologies That Can Improve the SAY TA MAN Website</h3>
+        <p>The <strong>SAY TA MAN Polyclinic</strong> website has established a strong foundation for providing digital healthcare services. To improve patient care, increase operational efficiency, and support the long‑term growth of the clinic, several advanced technologies are planned for future implementation. These developments will transform the website into a comprehensive smart healthcare platform that offers secure, convenient, and patient‑centered healthcare services.</p>
+    </div>
+
+    <div class="section-title"><i class="fas fa-truck"></i> 11. Logistics &amp; Supply Chain Management Strategy</div>
+    <div class="grid-2">
+        <div class="card"><h3><i class="fas fa-globe"></i> 1. Strategic Procurement and Sourcing Model</h3><p>To maintain smooth daily operations for Say Ta Man Polyclinic Co., Ltd., we use a combined sourcing strategy (Global + Local) to obtain high‑quality medical equipment and supplies efficiently:</p><ul><li><strong>Global Sourcing (Primary Medical Assets):</strong> Advanced medical machinery such as digital X‑ray systems, ultrasound scanners, and specialized pharmaceuticals are imported directly from certified manufacturers in Japan, Germany, and India.</li><li><strong>Local Sourcing (Operational Consumables):</strong> Daily medical items such as syringes, gloves, sterile gauzes, PPE kits, and general clinic furniture are procured from verified local distributors in Myanmar to minimize waiting times and optimize inventory costs.</li></ul></div>
+        <div class="card"><h3><i class="fas fa-file-signature"></i> 2. Regulatory Compliance and Inbound Logistics</h3><p>Healthcare products require strict adherence to national regulatory standards. The inbound import workflow follows a structured path:</p><p style="background:#edf8f5;padding:0.4rem 0.6rem;border-radius:10px;font-size:0.9rem;margin:0.4rem 0;">[International Supplier] → [FDA Approval & Import License] → [Port of Entry] → [Custom Clearance] → [Polyclinic Warehouse]</p><ul><li><strong>Regulatory Approvals & Compliance:</strong> Prior to shipment, all imported pharmaceuticals and medical devices must secure an Import Recommendation (IR) from the Food and Drug Administration (FDA) Myanmar, followed by an official Import License issued by the Ministry of Commerce.</li><li><strong>Mode of Transport & Customs Clearance:</strong> Say Ta Man Polyclinic partners with an experienced Third‑Party Logistics (3PL) provider specializing in healthcare freight clearance. We select the mode of transport based on speed, cost, and safety considerations:</li></ul></div>
+        <div class="card" style="grid-column:1/-1;">
+            <h3><i class="fas fa-boxes"></i> 3. Operational Logistics Services &amp; Working Process</h3>
+            <ul>
+                <li><strong>Medical Supply Management:</strong> Stocking essential prescription medicines, vitamins, and healthcare products for the clinic pharmacy.</li>
+                <li><strong>Equipment Maintenance & Care:</strong> Managing diagnostic tools like blood pressure monitors, glucose meters, and thermometers to ensure they remain fully operational.</li>
+                <li><strong>Inventory Control & Storage:</strong> Storing essential consumables (gloves, syringes, PPE) systematically in the clinic warehouse to prevent stockouts.</li>
+            </ul>
+            <div style="margin-top:0.6rem;background:#f0f8f6;border-radius:14px;padding:0.6rem 1rem;">
+                <p style="font-size:0.9rem;"><strong>Mode of Transport Comparison:</strong></p>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.4rem;font-size:0.85rem;font-weight:500;">
+                    <span style="background:#dceeec;padding:0.2rem 0.4rem;border-radius:8px;">Air Freight: Fast/Urgent, Higher cost, High safety for temp‑sensitive</span>
+                    <span style="background:#dceeec;padding:0.2rem 0.4rem;border-radius:8px;">Ocean Freight: Standard/Slower, Lower cost, Safe for bulk/heavy equipment</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title"><i class="fas fa-check-double"></i> 12. Conclusion</div>
+    <div class="card" style="margin-bottom:1.2rem;">
+        <p>In conclusion, the proposed establishment of <strong>SAY TA MAN Polyclinic</strong> addresses the critical need for comprehensive, integrated and accessible healthcare services under one roof. By combining diverse medical specialties, advanced diagnostic facilities and a patient centric approach, the clinic is well positioned to enhance healthcare delivery and improve patient outcomes in the community.</p>
+        <p style="margin-top:0.6rem;">From a strategic and financial perspective, this project demonstrates strong viability and long‑term sustainability. Moving forward, the polyclinic aims to integrate modern digital health solutions, such as telemedicine, to further expand its reach and continue adapting to the evolving needs of the healthcare sectors.</p>
+        <p style="margin-top:0.6rem;">The future development of the <strong>SAY TA MAN Polyclinic</strong> website aims to create a fully integrated smart healthcare ecosystem that combines Artificial Intelligence, Blockchain, IoT, Telemedicine, Cloud Computing, Big Data Analytics, Mobile Health, Virtual Reality, and Digital Therapeutics. These technologies will significantly improve healthcare accessibility, patient safety, service quality, and operational efficiency. By embracing digital innovation, <strong>SAY TA MAN polyclinic</strong> can strengthen its position as a modern healthcare provider and achieve its vision of delivering high‑quality, patient‑centered healthcare services for the community.</p>
+    </div>
+
+    <div class="section-title"><i class="fas fa-book"></i> 13. Reference</div>
+    <div style="background:#f2f9fa;border-radius:20px;padding:1rem 1.2rem;font-size:0.85rem;line-height:1.8;">
+        <ul class="ref-list">
+            <li>Ministry of Health. (2011). <em>Polyclinic procedure manual</em>. World Health Organization.</li>
+            <li>Government of Vietnam. (2016). <em>Decree No. 109/2016/ND‑CP on the issuance of practicing certificates for practitioners and operation licenses for health facilities</em>.</li>
+            <li>Karol Amrita. (n.d.). <em>Polyclinic design and space requirements</em>. Scribd.</li>
+            <li>Ajaj FinServ. (2024, December 19). <em>What is a polyclinic? Know the space requirements and benefits</em>.</li>
+            <li>Ministry of Health. (2006, December 30). <em>Survey on polyclinics</em>.</li>
+            <li>One Clinic Leigh. (n.d.). <em>What is a polyclinic?</em></li>
+            <li>Thukha Mingalar Medical &amp; Diagnostic Center. (n.d.).</li>
+            <li>Ni Ni Diagnostics &amp; Healthcare Centre. (n.d.).</li>
+        </ul>
+    </div>
+
+    <div class="footer-note">
+        <span><i class="fas fa-clinic-medical"></i> SAY TA MAN Polyclinic · Maydawi Road, North Okkalapa</span>
+        <span><i class="fas fa-phone"></i> 01-9690443 · 09740123450</span>
+        <span><i class="fas fa-envelope"></i> info@saytaman.site</span>
+        <span><i class="fas fa-clock"></i> Mon–Sun 8:00–21:00 · 24h emergency</span>
+        <span><i class="fab fa-facebook"></i> SAY TA MAN polyclinic</span>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.card').forEach(c=>{
+        c.addEventListener('mouseenter',function(){this.style.transform='scale(1.002)';this.style.transition='0.12s';});
+        c.addEventListener('mouseleave',function(){this.style.transform='scale(1)';});
+    });
+    console.log('SAY TA MAN · full project loaded (mobile friendly)');
+</script>
+</body>
+</html>

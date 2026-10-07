@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>SAY TA MAN · Healthcare</title>
+  <style>
+
+    :root {
+      --deep-navy: #0b1a2f;
+      --health-blue: #2a7de1;
+      --medical-green: #2acf9b;
+      --white: #f5faff;
+      --soft-cyan: #7ae0ff;
+      --glass-bg: rgba(10, 25, 47, 0.35);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-premium: 0 20px 40px -12px rgba(0, 20, 40, 0.6);
+      --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font-family);
+      background: var(--deep-navy);
+      color: var(--white);
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-image: url('img/l.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      padding: 1.5rem;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(8, 30, 52, 0.45) 0%, rgba(2, 12, 26, 0.75) 100%);
+      backdrop-filter: blur(1px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .floating-symbols {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .symbol {
+      position: absolute;
+      font-size: 2.2rem;
+      opacity: 0.2;
+      color: var(--white);
+      text-shadow: 0 0 20px rgba(42, 125, 225, 0.25);
+      animation: floatSymbol 18s infinite alternate ease-in-out;
+      will-change: transform, opacity;
+    }
+
+    .symbol:nth-child(1) { top: 6%; left: 5%; font-size: 2.8rem; animation-duration: 22s; animation-delay: 0s; }
+    .symbol:nth-child(2) { top: 15%; right: 6%; font-size: 2.2rem; animation-duration: 20s; animation-delay: 1.5s; }
+    .symbol:nth-child(3) { bottom: 18%; left: 7%; font-size: 2.6rem; animation-duration: 24s; animation-delay: 0.8s; }
+    .symbol:nth-child(4) { bottom: 25%; right: 5%; font-size: 2rem; animation-duration: 19s; animation-delay: 2.2s; }
+    .symbol:nth-child(5) { top: 40%; left: 2%; font-size: 2rem; animation-duration: 21s; animation-delay: 0.4s; }
+    .symbol:nth-child(6) { top: 55%; right: 2%; font-size: 2.4rem; animation-duration: 23s; animation-delay: 1.1s; }
+    .symbol:nth-child(7) { bottom: 8%; left: 20%; font-size: 1.8rem; animation-duration: 17s; animation-delay: 2.8s; }
+    .symbol:nth-child(8) { top: 8%; left: 25%; font-size: 1.8rem; animation-duration: 25s; animation-delay: 0.2s; }
+    .symbol:nth-child(9) { bottom: 12%; right: 20%; font-size: 2rem; animation-duration: 20s; animation-delay: 1.8s; }
+    .symbol:nth-child(10) { top: 30%; right: 10%; font-size: 2.2rem; animation-duration: 22s; animation-delay: 0.9s; }
+    .symbol:nth-child(11) { bottom: 40%; left: 12%; font-size: 1.6rem; animation-duration: 26s; animation-delay: 1.3s; }
+    .symbol:nth-child(12) { top: 70%; right: 12%; font-size: 1.8rem; animation-duration: 18s; animation-delay: 2.5s; }
+
+    @keyframes floatSymbol {
+      0% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.15; }
+      33% { transform: translateY(-18px) rotate(3deg) scale(1.02); opacity: 0.25; }
+      66% { transform: translateY(10px) rotate(-2deg) scale(0.98); opacity: 0.18; }
+      100% { transform: translateY(-8px) rotate(1deg) scale(1); opacity: 0.22; }
+    }
+
+    .cartoon-characters {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .character {
+      position: absolute;
+      font-size: 2.8rem;
+      opacity: 0.3;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+      animation: gentleFloat 16s infinite alternate ease-in-out;
+      will-change: transform;
+    }
+    .character:nth-child(1) { top: 12%; left: 12%; animation-duration: 14s; animation-delay: 0s; font-size: 2.6rem; }
+    .character:nth-child(2) { bottom: 14%; right: 10%; animation-duration: 18s; animation-delay: 1.2s; font-size: 2.4rem; }
+    .character:nth-child(3) { top: 60%; left: 4%; animation-duration: 20s; animation-delay: 0.6s; font-size: 2rem; }
+    .character:nth-child(4) { bottom: 30%; right: 4%; animation-duration: 15s; animation-delay: 2s; font-size: 2.2rem; }
+
+    @keyframes gentleFloat {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-15px) rotate(2deg); }
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+      .symbol, .character, .btn, .fade-item {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    .main-container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      max-width: 780px;
+      width: 100%;
+      padding: 2rem 1.5rem;
+      margin: 0 auto;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border-radius: 48px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-premium), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+      transition: all 0.2s ease;
+    }
+
+    .fade-item {
+      opacity: 0;
+      animation: fadeUp 0.9s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
+    }
+    .fade-item:nth-child(1) { animation-delay: 0.1s; }
+    .fade-item:nth-child(2) { animation-delay: 0.3s; }
+    .fade-item:nth-child(3) { animation-delay: 0.5s; }
+    .fade-item:nth-child(4) { animation-delay: 0.7s; }
+    .fade-item:nth-child(5) { animation-delay: 0.9s; }
+    .fade-item:nth-child(6) { animation-delay: 1.1s; }
+    .fade-item:nth-child(7) { animation-delay: 1.2s; }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(18px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .brand {
+      font-size: clamp(2.8rem, 12vw, 5.2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 0%, #b8e2ff 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(42, 125, 225, 0.25);
+      margin-bottom: 0.2rem;
+      line-height: 1.1;
+    }
+
+    .tagline {
+      font-size: clamp(1.1rem, 4vw, 1.8rem);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.8);
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      margin-bottom: 2.8rem;
+      padding: 0 0.5rem;
+    }
+    .tagline span {
+      display: inline-block;
+      background: linear-gradient(120deg, var(--medical-green), var(--health-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 400;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      width: 100%;
+      max-width: 400px;
+      margin: 0.25rem 0 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      width: 100%;
+      padding: 0.95rem 1.8rem;
+      border-radius: 60px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.4);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 500;
+      color: #f0f8ff;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1);
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .btn .icon {
+      font-size: 1.3rem;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(122, 224, 255, 0.4);
+      box-shadow: 0 18px 40px -12px rgba(0, 30, 70, 0.7), 0 0 0 1px rgba(122, 224, 255, 0.15) inset;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .btn:hover .icon {
+      opacity: 1;
+    }
+
+    .btn:active {
+      transform: translateY(0px);
+      box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-primary {
+      border-color: rgba(42, 207, 155, 0.25);
+    }
+    .btn-primary:hover {
+      border-color: rgba(42, 207, 155, 0.6);
+      box-shadow: 0 18px 40px -12px rgba(42, 207, 155, 0.3), 0 0 0 1px rgba(42, 207, 155, 0.2) inset;
+    }
+
+    .btn-secondary {
+      border-color: rgba(42, 125, 225, 0.25);
+    }
+    .btn-secondary:hover {
+      border-color: rgba(42, 125, 225, 0.6);
+      box-shadow: 0 18px 40px -12px rgba(42, 125, 225, 0.35), 0 0 0 1px rgba(42, 125, 225, 0.2) inset;
+    }
+
+    .btn-tertiary {
+      border-color: rgba(122, 224, 255, 0.2);
+    }
+    .btn-tertiary:hover {
+      border-color: rgba(122, 224, 255, 0.5);
+      box-shadow: 0 18px 40px -12px rgba(122, 224, 255, 0.25), 0 0 0 1px rgba(122, 224, 255, 0.2) inset;
+    }
+
+    .credits {
+      margin-top: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      color: rgba(255, 255, 255, 0.45);
+      transition: opacity 0.3s;
+    }
+
+    .credits a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+      transition: color 0.2s, border-color 0.2s;
+      font-weight: 400;
+    }
+    .credits a:hover {
+      color: var(--soft-cyan);
+      border-color: var(--soft-cyan);
+    }
+
+    .credit-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.3rem 0.8rem;
+    }
+
+    .credit-line .sep {
+      opacity: 0.3;
+      margin: 0 0.1rem;
+    }
+
+
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      .main-container { padding: 1.8rem 1rem; border-radius: 32px; }
+      .btn-group { max-width: 100%; }
+      .btn { padding: 0.8rem 1.2rem; font-size: 1rem; }
+      .symbol { font-size: 1.6rem !important; opacity: 0.15; }
+      .character { font-size: 1.8rem !important; opacity: 0.2; }
+      .brand { margin-bottom: 0.1rem; }
+      .tagline { margin-bottom: 1.8rem; }
+      .credits { font-size: 0.65rem; }
+    }
+
+    @media (max-width: 480px) {
+      .main-container { padding: 1.5rem 0.8rem; border-radius: 28px; }
+      .btn { padding: 0.75rem 0.8rem; font-size: 0.95rem; gap: 0.4rem; }
+      .btn .icon { font-size: 1.1rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .main-container { padding: 3rem 3.5rem; }
+      .btn-group { max-width: 440px; }
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--soft-cyan);
+      outline-offset: 3px;
+    }
+    a:focus-visible {
+      outline: 1px solid var(--soft-cyan);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="overlay" aria-hidden="true"></div>
+
+  <div class="floating-symbols" aria-hidden="true">
+    <span class="symbol">✚</span>
+    <span class="symbol">🏥</span>
+    <span class="symbol">❤️</span>
+    <span class="symbol">⚕️</span>
+    <span class="symbol">💊</span>
+    <span class="symbol">🧬</span>
+    <span class="symbol">🩺</span>
+    <span class="symbol">🔬</span>
+    <span class="symbol">🚑</span>
+    <span class="symbol">🛡️</span>
+    <span class="symbol">🧪</span>
+    <span class="symbol">⛑️</span>
+  </div>
+
+  <div class="cartoon-characters" aria-hidden="true">
+    <span class="character">👨‍⚕️</span>
+    <span class="character">👩‍⚕️</span>
+    <span class="character">🧑‍⚕️</span>
+    <span class="character">🩺</span>
+  </div>
+
+  <main class="main-container">
+
+    <h1 class="brand fade-item">SAY TA MAN</h1>
+    <p class="tagline fade-item">Smart Healthcare. <span>Better Care.</span></p>
+
+    <div class="btn-group">
+      <a href="img/mml.pdf" class="btn btn-primary fade-item" role="button">
+        <span class="icon">📘</span> Assignment File 
+      </a>
+      <a href="img/SAY TA MAN .pdf" class="btn btn-secondary fade-item" role="button">
+        <span class="icon">📋</span> Presentation File 
+      </a>
+      <a href="ass.html" target="_blank" rel="noopener noreferrer" class="btn btn-alt fade-item" role="button">
+        <span class="icon">💋</span> Visit Professional Assignment
+      </a>
+      <a href="https://saytaman.site/" target="_blank" rel="noopener noreferrer" class="btn btn-tertiary fade-item" role="button">
+        <span class="icon">🌐</span> Visit SAY TA MAN
+      </a>
+    </div>
+
+    <div class="credits fade-item">
+      <div class="credit-line">
+        <span>Created by TREEAWARA’s CEO</span>
+        <a href="https://thitsaraung.com/" target="_blank" rel="noopener noreferrer">Thitsar Aung</a>
+      </div>
+      <div class="credit-line">
+        <span class="sep">—</span>
+        <a href="https://awara-theta.vercel.app/" target="_blank" rel="noopener noreferrer">TREEAWARA Company</a>
+        <span class="sep">—</span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (motionQuery.matches) {
+        document.body.classList.add('reduce-motion');
+      }
+
+      console.log('SAY TA MAN · Premium Healthcare');
+    })();
+  </script>
+</body>
+</html>
